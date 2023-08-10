@@ -1,0 +1,56 @@
+
+<h2>Reactive Form</h2>
+<html>
+  <head>
+    <title></title>
+  </head>
+
+<body>
+  <form [formGroup]="dataform" (ngSubmit)="saveData()">
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example">
+        <mat-label>First name</mat-label>
+        <input matInput formControlName="name">
+      <span *ngIf="name && name.invalid && name.touched">Name is reuqired</span>
+      </mat-form-field></td>
+      </tr>
+
+      <tr>
+        <td><mat-form-field class="example">
+          <mat-label>email</mat-label>
+          <input matInput formControlName="email">
+          <div *ngIf="email && email.invalid && email.touched">email is required</div>
+          <div *ngIf="email && dataform.errors">InValid</div>
+        </mat-form-field></td>
+        
+        </tr>
+<tr>
+  <mat-form-field>
+    <mat-label>Favorite food</mat-label>
+    <mat-select formControlName="food">
+      <mat-option *ngFor="let food of foods" [value]="food.value"  >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+    <div *ngIf="food && food.invalid && food.touched">Please select the food</div>
+  </mat-form-field>
+  </tr>
+  <tr>
+    <td><mat-form-field class="example">
+      <mat-label>Mobile No</mat-label>
+      <input matInput  type="number" formControlName="mobileno">
+      <div *ngIf="mobileno && mobileno.invalid && mobileno.touched">Mo No. is required</div>
+    </mat-form-field></td>
+    </tr>
+    <div class="button">
+      <button mat-raised-button color="primary">Save Me</button>
+    </div>
+  </table>
+
+  
+ 
+<br>
+ 
+</form>
+</body>
+</html>
